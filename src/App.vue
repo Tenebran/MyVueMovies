@@ -7,20 +7,34 @@ const movieStore = useMovieStore();
 
 <template>
   <main>
-    <heade class="header">
+    <header class="header">
       <img src="/logo.svg" alt="logo" class="header-logo" />
       <h2 class="header-title">My Vue Movies</h2>
-    </heade>
+    </header>
     <div class="tabs">
-      <button :class="['btn', { btn_green: movieStore.activeTab === 1 }]">Favorite</button>
-      <button :class="['btn', { btn_green: movieStore.activeTab === 2 }]">Serach</button>
+      <button
+        :class="['btn', { btn_green: movieStore.activeTab === 1 }]"
+        @click="movieStore.setActiveTab(1)">
+        Favorite
+      </button>
+      <button
+        :class="['btn', { btn_green: movieStore.activeTab === 2 }]"
+        @click="movieStore.setActiveTab(2)">
+        Serach
+      </button>
     </div>
+    <div v-if="movieStore.activeTab === 1">
+      <h3 v-if="movieStore.watchedMovies.length >= 1">
+        Watched Movies ({{ movieStore.watchedMovies.length }})
+      </h3>
+      <Movie v-for="movie in movieStore.watchedMovies" :movie="movie" :key="movie.id" />
 
-    <Movie
-      v-if="movieStore.activeTab === 1"
-      v-for="movie in movieStore.movies"
-      :movie="movie"
-      :key="movie.id" />
+      <h3 v-if="movieStore.unWatchedMovies.length >= 1">
+        Unwatched Movies ({{ movieStore.unWatchedMovies.length }})
+      </h3>
+      <Movie v-for="movie in movieStore.unWatchedMovies" :movie="movie" :key="movie.id" />
+    </div>
+    <div class="seacrh" v-else>search</div>
   </main>
 </template>
 

@@ -8,17 +8,21 @@
       <div class="movie-name">{{ movie.original_title }} {{ movie.release_date }}</div>
       <span class="movie-overview">{{ movie.overview }}</span>
       <div class="movie-buttons">
-        <button class="btn movie-buttons-watched">
+        <button class="btn movie-buttons-watched" @click="movieStore.toggleWatch(movie.id)">
           <span v-if="!movie.isWatched">Watched</span>
-          <span v-else>Unwatched</span>
+          <span v-else="!!movie.isWatched">Unwatched</span>
         </button>
-        <button class="btn movie-buttons-delete">Delete</button>
+        <button class="btn movie-buttons-delete" @click="movieStore.deleteMovie(movie.id)">
+          Delete
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useMovieStore } from '../stores/movieStore';
+
 type Movie = {
   id: number;
   original_title: string;
@@ -31,6 +35,8 @@ type Movie = {
 defineProps<{
   movie: Movie;
 }>();
+
+const movieStore = useMovieStore();
 </script>
 
 <style scoped lang="scss">
