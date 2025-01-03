@@ -8,7 +8,7 @@ export const useMovieStore = defineStore('movieStore', {
         original_title: 'Spider-Man',
         overview:
           'After being bitten by a genetically altered spider at Oscorp, nerdy but endearing high school student Peter Parker is endowed with amazing powers.',
-        poster_path: '/gHzCbhZxyTbgxOpXqD0dDNPTn.jpg',
+        poster_path: '/b0PlSFdDwbyK0cf5RxwDpaOJQvQ.jpg',
         release_date: '2002-05-01',
         isWatched: false,
       },
@@ -22,5 +22,7 @@ export const useMovieStore = defineStore('movieStore', {
         isWatched: true,
       },
     ],
+
+    activeTab: 1,
   }),
 });

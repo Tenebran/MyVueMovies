@@ -3,10 +3,18 @@
     <img
       :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
       :alt="movie.original_title"
-      class="movie-image" />
-    <div class="movie-name">{{ movie.original_title }} {{ movie.release_date }}</div>
-
-    <span class="movie-overview">{{ movie.overview }}</span>
+      class="movie-img" />
+    <div>
+      <div class="movie-name">{{ movie.original_title }} {{ movie.release_date }}</div>
+      <span class="movie-overview">{{ movie.overview }}</span>
+      <div class="movie-buttons">
+        <button class="btn movie-buttons-watched">
+          <span v-if="!movie.isWatched">Watched</span>
+          <span v-else>Unwatched</span>
+        </button>
+        <button class="btn movie-buttons-delete">Delete</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,13 +70,13 @@ defineProps<{
     justify-content: center;
 
     &-delete {
-      color: #fff;
+      color: #35495e;
       background: #ff2a2a;
     }
 
     &-watched {
-      color: #fff;
-      background: #1eb4c3;
+      color: #35495e;
+      background: #42b883;
 
       &__icon {
         width: 15px;

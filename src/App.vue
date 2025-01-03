@@ -1,21 +1,30 @@
 <script setup lang="ts">
 import { useMovieStore } from './stores/movieStore';
+import Movie from './components/Movie.vue';
 
 const movieStore = useMovieStore();
-console.log('movieStore', movieStore.movies);
 </script>
 
 <template>
-  <heade class="header">
-    <img src="/logo.svg" alt="logo" class="header-logo" />
-    <h2 class="header-title">My Vue Movies</h2>
-  </heade>
-  <div class="movies" v-for="movies in movieStore.movies">
-    {{ movies.release_date }}
-  </div>
+  <main>
+    <heade class="header">
+      <img src="/logo.svg" alt="logo" class="header-logo" />
+      <h2 class="header-title">My Vue Movies</h2>
+    </heade>
+    <div class="tabs">
+      <button :class="['btn', { btn_green: movieStore.activeTab === 1 }]">Favorite</button>
+      <button :class="['btn', { btn_green: movieStore.activeTab === 2 }]">Serach</button>
+    </div>
+
+    <Movie
+      v-if="movieStore.activeTab === 1"
+      v-for="movie in movieStore.movies"
+      :movie="movie"
+      :key="movie.id" />
+  </main>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .header {
   display: flex;
   justify-content: center;
@@ -27,7 +36,7 @@ console.log('movieStore', movieStore.movies);
     margin-right: 10px;
   }
   &-title {
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    text-shadow: 2px 2px 4px rgba(66, 184, 131, 0.8);
   }
 }
 
@@ -46,7 +55,7 @@ console.log('movieStore', movieStore.movies);
   }
 
   &_green {
-    background: #37df5c;
+    background: #42b883;
   }
 }
 .tabs {
