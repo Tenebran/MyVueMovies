@@ -7,10 +7,19 @@
     <div>
       <div class="movie-name">{{ movie.original_title }} {{ movie.release_date }}</div>
       <span class="movie-overview">{{ movie.overview }}</span>
-      <div class="movie-buttons">
+      <div class="movie-buttons" v-if="!isSearch">
         <button class="btn movie-buttons-watched" @click="movieStore.toggleWatch(movie.id)">
           <span v-if="!movie.isWatched">Watched</span>
           <span v-else="!!movie.isWatched">Unwatched</span>
+        </button>
+        <button class="btn movie-buttons-delete" @click="movieStore.deleteMovie(movie.id)">
+          Delete
+        </button>
+      </div>
+
+      <div class="movie-buttons" v-else>
+        <button class="btn movie-buttons-watched" @click="movieStore.toggleWatch(movie.id)">
+          <span>Add</span>
         </button>
         <button class="btn movie-buttons-delete" @click="movieStore.deleteMovie(movie.id)">
           Delete
@@ -34,6 +43,7 @@ type Movie = {
 
 defineProps<{
   movie: Movie;
+  isSearch: boolean;
 }>();
 
 const movieStore = useMovieStore();
@@ -48,6 +58,7 @@ const movieStore = useMovieStore();
   border: 2px solid #efefef;
   padding: 10px;
   border-radius: 10px;
+  background-color: #004643;
 
   &-accept {
     margin-right: 10px;

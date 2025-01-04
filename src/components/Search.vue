@@ -2,22 +2,23 @@
   <form @submit.prevent="searchMovies.getMovies(searchMovie)">
     <input type="text" class="search-input" placeholder="movie title" v-model="searchMovie" />
   </form>
-  <Loader />
+  <Loader v-if="searchMovies.loading" />
+  <div v-else>
+    <Movie v-for="movie in searchMovies.movies" :movie="movie" :key="movie.id" :is-search="true" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useSearchMovieStore } from '../stores/searchStore';
 import Loader from './Loader.vue';
+import Movie from './Movie.vue';
 
 const searchMovies = useSearchMovieStore();
 
 const searchMovie = ref('');
 
-console.log(
-  'searchMovies.movies',
-  searchMovies.movies.map((lis) => lis)
-);
+console.log('searchMovies.movies', searchMovies.loading);
 </script>
 
 <style scoped lang="scss">

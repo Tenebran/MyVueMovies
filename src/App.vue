@@ -28,12 +28,20 @@ const movieStore = useMovieStore();
       <h3 v-if="movieStore.watchedMovies.length >= 1">
         Watched Movies ({{ movieStore.watchedMovies.length }})
       </h3>
-      <Movie v-for="movie in movieStore.watchedMovies" :movie="movie" :key="movie.id" />
+      <Movie
+        v-for="movie in movieStore.watchedMovies"
+        :movie="movie"
+        :key="movie.id"
+        :is-search="false" />
 
       <h3 v-if="movieStore.unWatchedMovies.length >= 1">
         Unwatched Movies ({{ movieStore.unWatchedMovies.length }})
       </h3>
-      <Movie v-for="movie in movieStore.unWatchedMovies" :movie="movie" :key="movie.id" />
+      <Movie
+        v-for="movie in movieStore.unWatchedMovies"
+        :movie="movie"
+        :key="movie.id"
+        :is-search="false" />
     </div>
     <div class="seacrh" v-else><Search /></div>
   </main>
@@ -52,6 +60,7 @@ const movieStore = useMovieStore();
   }
   &-title {
     text-shadow: 2px 2px 4px rgba(66, 184, 131, 0.8);
+    color: #42b883;
   }
 }
 
