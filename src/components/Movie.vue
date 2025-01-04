@@ -18,11 +18,8 @@
       </div>
 
       <div class="movie-buttons" v-else>
-        <button class="btn movie-buttons-watched" @click="movieStore.toggleWatch(movie.id)">
+        <button class="btn movie-buttons-watched" @click="searchStore.addToUserMovies(movie)">
           <span>Add</span>
-        </button>
-        <button class="btn movie-buttons-delete" @click="movieStore.deleteMovie(movie.id)">
-          Delete
         </button>
       </div>
     </div>
@@ -31,15 +28,8 @@
 
 <script setup lang="ts">
 import { useMovieStore } from '../stores/movieStore';
-
-type Movie = {
-  id: number;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  isWatched: boolean;
-};
+import { useSearchMovieStore } from '../stores/searchStore';
+import type { Movie } from '../types';
 
 defineProps<{
   movie: Movie;
@@ -47,6 +37,7 @@ defineProps<{
 }>();
 
 const movieStore = useMovieStore();
+const searchStore = useSearchMovieStore();
 </script>
 
 <style scoped lang="scss">
@@ -58,7 +49,7 @@ const movieStore = useMovieStore();
   border: 2px solid #efefef;
   padding: 10px;
   border-radius: 10px;
-  background-color: #004643;
+  background-color: #16161a;
 
   &-accept {
     margin-right: 10px;

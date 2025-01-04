@@ -1,14 +1,7 @@
 import { defineStore } from 'pinia';
 import { searchMovie } from '../api/api';
-
-type Movie = {
-  id: number;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  isWatched: boolean;
-};
+import { useMovieStore } from './movieStore';
+import type { Movie } from '../types';
 
 export const useSearchMovieStore = defineStore('searchMovieStore', {
   state: () => ({
@@ -27,6 +20,11 @@ export const useSearchMovieStore = defineStore('searchMovieStore', {
       } finally {
         this.loading = false;
       }
+    },
+    addToUserMovies(movie: Movie) {
+      const movieStore = useMovieStore();
+      movieStore.movies.push({ ...movie, isWatched: false });
+      movieStore.activeTab = 1;
     },
   },
 });

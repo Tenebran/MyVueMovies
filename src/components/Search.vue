@@ -17,8 +17,6 @@ import Movie from './Movie.vue';
 const searchMovies = useSearchMovieStore();
 
 const searchMovie = ref('');
-
-console.log('searchMovies.movies', searchMovies.loading);
 </script>
 
 <style scoped lang="scss">

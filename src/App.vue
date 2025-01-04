@@ -25,7 +25,7 @@ const movieStore = useMovieStore();
       </button>
     </div>
     <div v-if="movieStore.activeTab === 1">
-      <h3 v-if="movieStore.watchedMovies.length >= 1">
+      <h3 v-if="movieStore.watchedMovies.length >= 1" class="tabs-title">
         Watched Movies ({{ movieStore.watchedMovies.length }})
       </h3>
       <Movie
@@ -34,7 +34,7 @@ const movieStore = useMovieStore();
         :key="movie.id"
         :is-search="false" />
 
-      <h3 v-if="movieStore.unWatchedMovies.length >= 1">
+      <h3 v-if="movieStore.unWatchedMovies.length >= 1" class="tabs-title">
         Unwatched Movies ({{ movieStore.unWatchedMovies.length }})
       </h3>
       <Movie
@@ -71,6 +71,7 @@ const movieStore = useMovieStore();
   font-size: 14px;
   margin: 0 10px;
   border-radius: 10px;
+  font-weight: 800;
   cursor: pointer;
   background: #efefef;
 
@@ -86,5 +87,8 @@ const movieStore = useMovieStore();
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  &-title {
+    color: #198f5a;
+  }
 }
 </style>
