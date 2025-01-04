@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useMovieStore } from './stores/movieStore';
 import Movie from './components/Movie.vue';
+import Search from './components/Search.vue';
 
 const movieStore = useMovieStore();
 </script>
@@ -34,7 +35,7 @@ const movieStore = useMovieStore();
       </h3>
       <Movie v-for="movie in movieStore.unWatchedMovies" :movie="movie" :key="movie.id" />
     </div>
-    <div class="seacrh" v-else>search</div>
+    <div class="seacrh" v-else><Search /></div>
   </main>
 </template>
 
