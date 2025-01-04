@@ -46,7 +46,7 @@ const searchStore = useSearchMovieStore();
   grid-template-columns: 200px 1fr;
   column-gap: 30px;
   margin-bottom: 20px;
-  border: 2px solid #efefef;
+  border: 2px solid #42b883;
   padding: 10px;
   border-radius: 10px;
   background-color: #16161a;
